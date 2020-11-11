@@ -17,9 +17,17 @@ public class SelectionSort implements Sort {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void sort(int[] array) {
         /*
          * TODO(Студент): Реализовать метод sort класса SelectionSort
          */
+
+        for (int i = 0; i < array.length - 1; i++) {
+            int nextMinId = minId(array, i, array.length);//находим индекс минимального элемента из неотсортированного "хвоста"
+            if (array[i] > array[nextMinId]) {
+                swap(array, i, nextMinId);
+            }
+        }
     }
 }

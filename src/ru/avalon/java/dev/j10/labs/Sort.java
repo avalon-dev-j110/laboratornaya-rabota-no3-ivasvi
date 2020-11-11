@@ -17,4 +17,22 @@ public interface Sort {
      * @param array массив, подлежащий сортировке
      */
     void sort(int[] array);
+    
+    default void swap(int[] array, int first, int second) {
+        int tmp;
+        tmp = array[first];
+        array[first] = array[second];
+        array[second] = tmp;
+    }
+
+    default int minId(int[] array, int start, int finish) //поиск индекса минимального элемента массива на заданном промежутке
+    {
+        int minId = start;
+        for (int i = start; i < finish; i++) {
+            if (array[i] < array[minId]) {
+                minId = i;
+            }
+        }
+        return minId;
+    }
 }

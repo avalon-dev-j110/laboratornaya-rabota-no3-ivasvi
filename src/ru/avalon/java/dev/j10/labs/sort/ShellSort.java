@@ -20,9 +20,31 @@ public class ShellSort implements Sort {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void sort(int[] array) {
         /*
          * TODO(Студент): Реализовать метод sort класса ShellSort
          */
+        //Разбиваем массив на подмассивы, которые состоят из элементов, находящихся 
+        //на фиксированном "расстоянии" друг от друга. 
+        //На каждой итерации сортируем подмассивы, затем уменьшаем "расстояние" вдвое.
+        for (int distance = array.length / 2; distance > 0; distance /= 2) {
+            insertionDistanceSort(array, distance);
+        }
+    }
+
+    //Сортировка вставками в подмассивах, которые получаются если рассматривать 
+    //элементы только на фиксированном "расстоянии" друг от друга.
+    private void insertionDistanceSort(int[] array, int distance) {
+        int tmp;
+        int j;
+        for (int i = distance; i < array.length; i++) {
+            tmp = array[i];
+            j = i;
+            while ((j > distance - 1) && array[j] < array[j - distance]) {
+                swap(array, j, j - distance);
+                j = i - distance;
+            }
+        }
     }
 }
