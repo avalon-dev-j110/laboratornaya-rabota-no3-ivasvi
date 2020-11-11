@@ -16,9 +16,23 @@ public class BubbleSort implements Sort {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void sort(int[] array) {
         /*
          * TODO(Студент): Реализовать метод sort класса BubbleSort
          */
+        boolean esc;
+        for (int i = 0; i < array.length - 1; i++) {
+            esc = true;
+            for (int j = 0; j < array.length - 1 - i; j++) {
+                if (array[j] > array[j + 1]) {
+                    swap(array, j, j + 1);
+                    esc = false;// при проходе была хотя бы одна перестановка
+                }
+            }
+            if (esc) {//если при проходе перестановок не было то массив уже отсортирован, можно выходить
+                break;
+            }
+        }
     }
 }
